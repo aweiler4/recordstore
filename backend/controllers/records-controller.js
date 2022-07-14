@@ -29,7 +29,7 @@ const getById = async (req, res, next) => {
 }
 
 const addRecord = async (req, res, next) => {
-    const {name, artist, description, price, available} = req.body;
+    const {name, artist, description, price, available, image} = req.body;
     let record;
     try {
         record = new Record({
@@ -37,7 +37,8 @@ const addRecord = async (req, res, next) => {
             artist,
             description,
             price,
-            available
+            available,
+            image
         });
         await record.save();
     } catch (err) {
@@ -51,7 +52,7 @@ const addRecord = async (req, res, next) => {
 
 const updateRecord = async (req, res, next) => {
     const id = req.params.id;
-    const {name, artist, description, price, available} = req.body;
+    const {name, artist, description, price, available, image} = req.body;
     let record;
     try {
         record = await Record.findByIdAndUpdate(id, {
@@ -59,7 +60,8 @@ const updateRecord = async (req, res, next) => {
             artist,
             description,
             price,
-            available
+            available,
+            image
         });
         record = await record.save()
     } catch (err) {
