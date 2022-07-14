@@ -1,13 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const router = require('./routes/record-routes');
 
 const app = express();
-
-//Middleware
-
-app.use('/', (req, res, next) => {
-    res.send('This is starting our App')
-})
+app.use(express.json());
+app.use('/records', router)
 
 
 mongoose
